@@ -1,0 +1,35 @@
+{
+  "name": "codeatlas-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CodeAtlas AI — AI-powered Code Intelligence Platform with RAG, AST parsing, and semantic search",
+  "workspaces": [
+    "shared",
+    "parser",
+    "embedding-service",
+    "vector-service",
+    "ai-service",
+    "backend",
+    "workers",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -n backend,workers,frontend -c blue,magenta,green \"npm run dev -w backend\" \"npm run dev -w workers\" \"npm run dev -w frontend\"",
+    "dev:backend": "npm run dev -w backend",
+    "dev:workers": "npm run dev -w workers",
+    "dev:frontend": "npm run dev -w frontend",
+    "build": "npm run build -w shared && npm run build -w parser && npm run build -w embedding-service && npm run build -w vector-service && npm run build -w ai-service && npm run build -w backend && npm run build -w workers && npm run build -w frontend",
+    "db:migrate": "npm run db:migrate -w backend",
+    "lint": "npm run lint --workspaces --if-present",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.8.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
