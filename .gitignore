@@ -30,8 +30,6 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
-.cursor/
-.cursorignore
 AGENTS.md
 
 # Testing / coverage
